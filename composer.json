@@ -1,0 +1,20 @@
+{
+    "name": "edgji/transloadit-php-sdk-laravel",
+    "description": "Simple Laravel 4 service provider for the Trandloadit sdk for PHP.",
+    "authors": [
+        {
+            "name": "Jose Garcia",
+            "email": "j.edgji@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "psr-0": {
+            "Transloadit\\Laravel": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
