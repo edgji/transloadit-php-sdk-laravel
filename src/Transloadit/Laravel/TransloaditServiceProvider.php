@@ -5,12 +5,15 @@ use Illuminate\Support\ServiceProvider;
 
 class TransloaditServiceProvider extends ServiceProvider {
 
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
+    /**
+     * Boot the service provider.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->package('edgji/transloadit-php-sdk-laravel', 'transloadit');
+    }
 
 	/**
 	 * Register the service provider.
@@ -22,25 +25,12 @@ class TransloaditServiceProvider extends ServiceProvider {
 		$this->app['transloadit'] = $this->app->share(function ($app) {
             // Retrieve the config
             $config = $app['config']['transloadit'] ?: $app['config']['transloadit::config'];
-            if (isset($config['config_file'])) {
-                $config = $config['config_file'];
-            }
 
             $transloadit = new Transloadit($config);
 
             return $transloadit;
         });
 	}
-
-	/**
-     * Bootstrap the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->package('transloadit/php-sdk', 'transloadit');
-    }
 
 	/**
 	 * Get the services provided by the provider.
